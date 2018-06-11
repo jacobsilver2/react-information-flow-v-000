@@ -7,7 +7,7 @@ export default class Tier1 extends Component {
 
   constructor(props) {
     super(props)
-    const [c1,c2,c3] = generateColors()
+    const [c1,c2,c3] = this.generateColors()
     this.state = {
       color: c1,
       childColor: c2, 
@@ -18,7 +18,7 @@ export default class Tier1 extends Component {
   generateColors = (count=3) => {
     const colors = [getRandomColor()]
     
-    for (i=0; i<count; i++) {
+    for (let i=0; i<count; i++) {
       colors.push(getReducedColor(colors[colors.length -1]))
     }
     return colors
@@ -54,8 +54,8 @@ export default class Tier1 extends Component {
   render() {
     return (
       <div onClick={this.handleClick} className="tier1" style={{backgroundColor: this.state.color, color: this.state.color}}>
-        <Tier2 color={this.state.childColor} />
-        <Tier2 color={this.state.childColor} />
+        <Tier2 handleClick={this.handleChildClick} handleChildClick={this.handleGrandchildClick} color={this.state.childColor} childColor={this.state.grandchildColor} />
+        <Tier2 handleClick={this.handleChildClick} handleChildClick={this.handleGrandchildClick} color={this.state.childColor} childColor={this.state.grandchildColor} />
       </div>
     )
   }
